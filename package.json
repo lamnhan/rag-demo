@@ -1,0 +1,46 @@
+{
+  "name": "rag-demo",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "script": "tsx scripts/index.ts",
+    "dev:server": "tsx watch server/index.ts",
+    "dev:client": "wait-port 3000 && vite",
+    "dev": "run-p dev:* --print-label",
+    "build:server": "tsc --project server/tsconfig.json",
+    "build:client": "tsc --project client/tsconfig.json && vite build",
+    "build": "run-s build:*",
+    "preview:server": "node dist/server/server/index.js",
+    "preview:client": "wait-port 3000 && vite preview",
+    "preview": "run-p preview:* --print-label",
+    "lint": "biome check",
+    "fix": "biome check --write ."
+  },
+  "dependencies": {
+    "@trpc/client": "^11.3.1",
+    "@trpc/server": "^11.3.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "lit": "^3.3.0",
+    "openai": "^5.3.0",
+    "superjson": "^2.2.2",
+    "surrealdb": "^1.3.2",
+    "zod": "^3.25.56"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@surrealdb/node": "1.0.0-beta.3",
+    "@types/cors": "^2.8.19",
+    "@types/node": "^22.15.30",
+    "mri": "^1.2.0",
+    "npm-run-all2": "^8.0.4",
+    "tsx": "^4.19.4",
+    "typescript": "~5.8.3",
+    "vite": "^6.3.5",
+    "wait-port": "^1.1.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["@biomejs/biome", "esbuild"]
+  }
+}
