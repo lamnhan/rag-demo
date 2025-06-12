@@ -47,6 +47,7 @@ export async function runInsertCommand() {
           description: sample.description,
           thumbnail: sample.image,
           vector: sample.embeddings,
+          url: `https://www.amazon.com/dp/${sample.parent_asin}`,
         }),
       );
       console.log(`Upserted ${sample.parent_asin} successfully.`);

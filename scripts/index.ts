@@ -3,6 +3,7 @@ import mri from 'mri';
 
 import { runDownloadCommand } from './commands/download.js';
 import { runInsertCommand } from './commands/insert.js';
+import { runQueryCommand } from './commands/query.js';
 import { runSetupCommand } from './commands/setup.js';
 
 (async () => {
@@ -20,6 +21,10 @@ import { runSetupCommand } from './commands/setup.js';
     }
     case 'insert': {
       await runInsertCommand();
+      break;
+    }
+    case 'query': {
+      await runQueryCommand(args._[1]);
       break;
     }
     default: {

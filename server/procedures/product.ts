@@ -23,6 +23,8 @@ function createPromptWithContext(userMessage: string, products: Product[]) {
 
   Description: ${product.description}
 
+  URL: ${product.url}
+
 </product-${index + 1}>
   `,
     )

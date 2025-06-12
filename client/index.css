@@ -1,38 +1,43 @@
+@font-face {
+  font-family: "Geist";
+  src: url("./assets/fonts/Geist/GeistVF.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("./assets/fonts/Geist/GeistMonoVF.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --color-body: #ffffff;
+  --color-body-contrast: #222428;
+  --color-medium: #6b7280;
+  --color-medium-contrast: #f4f5f8;
+  --color-primary: #18181a;
+  --color-primary-contrast: #f4f5f8;
+
+  font-family: Geist, sans-serif;
+  font-size: 16px;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: var(--color-body);
+  color: var(--color-body-contrast);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
+code {
+  font-family: "Geist Mono", monospace;
 }

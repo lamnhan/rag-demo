@@ -10,6 +10,9 @@ DEFINE FIELD IF NOT EXISTS description ON TABLE products TYPE string
 DEFINE FIELD IF NOT EXISTS thumbnail ON TABLE products TYPE string
   ASSERT string::is::url($value);
 
+DEFINE FIELD IF NOT EXISTS url ON TABLE products TYPE string
+  ASSERT string::is::url($value);
+
 DEFINE FIELD IF NOT EXISTS vector ON TABLE products TYPE array<float>
   ASSERT array::len($value) = 1536;
 
@@ -24,9 +27,10 @@ DEFINE FUNCTION OVERWRITE fn::search_for_products($input_vector: array<float>) {
     SELECT
       title,
       description,
-      thumbnail
+      thumbnail,
+      url
     FROM products
-    WHERE vector <|5|> $input_vector
+    WHERE vector <|6|> $input_vector
   );
   RETURN $products;
 };
