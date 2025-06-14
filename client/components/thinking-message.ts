@@ -41,14 +41,14 @@ export class ThinkingMessage extends LitElement {
     }
 
     .loader {
-      margin-top: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 5px;
       width: 64px;
       height: 48px;
+      margin-top: 12px;
       border-radius: 1000px;
-      gap: 5px;
       background-color: var(--color-medium-contrast);
     }
 

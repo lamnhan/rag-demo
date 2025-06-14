@@ -31,10 +31,10 @@ export class MessageItem extends LitElement {
           this.products.length <= 0
             ? null
             : html`
-          <div class="products-row">
+          <div class="products">
             ${this.products.map(
               (product) => html`
-              <a href=${product.url} class="product-card">
+              <a class="product-card" href=${product.url} target="_blank">
                 <img src=${product.thumbnail} alt=${product.title} />
                 <div class="product-title">${product.title}</div>
               </a>
@@ -49,18 +49,25 @@ export class MessageItem extends LitElement {
   static styles = css`
     :host {
       display: block;
-      padding: 1rem;
+    }
+
+    a {
+      color: var(--color-primary);
+    }
+
+    code {
+      font-family: "Geist Mono", monospace;
     }
 
     .message {
       margin-bottom: 1rem;
     }
 
-    .products-row {
+    .products {
       display: grid;
       grid-template-columns: repeat(3, minmax(200px, 1fr));
       gap: 1rem;
-      padding: 0.5rem 0;
+      padding-top: 1rem;
     }
 
     .product-card {
@@ -79,7 +86,7 @@ export class MessageItem extends LitElement {
 
     .product-card img {
       width: 100%;
-      height: 150px;
+      height: 200px;
       object-fit: cover;
     }
 
@@ -87,18 +94,6 @@ export class MessageItem extends LitElement {
       padding: 0.5rem;
       font-size: 0.9rem;
       text-align: center;
-    }
-
-    @media (max-width: 768px) {
-      .products-row {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 480px) {
-      .products-row {
-        grid-template-columns: 1fr;
-      }
     }
   `;
 }

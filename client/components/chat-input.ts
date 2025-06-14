@@ -30,18 +30,17 @@ export class ChatInput extends LitElement {
   static styles = css`
     :host {
       display: flex;
-      align-items: flex-end;
       gap: 1rem;
       border: 1px solid var(--color-medium);
       border-radius: 2rem;
-      padding: 0.5rem 1rem 1rem 0.5rem;
+      padding: 1rem;
     }
     
     .textarea {
       flex: 1;
       border: none;
       border-radius: 2rem;
-      padding: 1rem;
+      padding: 0.5rem 0.5rem 1rem;
       height: 3rem;
       font-size: 1rem;
       outline: none;

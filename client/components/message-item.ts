@@ -37,7 +37,7 @@ export class MessageItem extends LitElement {
     }
 
     :host(.user) .content {
-      padding: 1rem 2rem;
+      padding: 1.5rem;
       border-radius: 2rem;
       background-color: var(--color-medium-contrast);
     }
