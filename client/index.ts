@@ -13,6 +13,7 @@ import './components/simulated-text-with-extra.js';
 import './components/message-item.js';
 import './components/thinking-message.js';
 import './components/result-message.js';
+import './components/error-message.js';
 
 @customElement('app-root')
 export class AppRoot extends LitElement {
@@ -77,28 +78,47 @@ export class AppRoot extends LitElement {
     userMessage: string,
     thinkingMessageId: string,
   ) {
-    // wait for the AI to think
-    const result = await trpc.product.getResponseAndProducts.query({
-      userMessage,
-    });
-    // replace the thinking message with the result message
-    const latestThinkingMessageIndex = this.messages.findIndex(
+    const newMessages = [...this.messages];
+    const latestThinkingMessageIndex = newMessages.findIndex(
       (message) => message.id === thinkingMessageId,
     );
-    const newMessages = [...this.messages];
-    newMessages.splice(latestThinkingMessageIndex, 1);
-    this.messages = [
-      ...newMessages,
-      {
-        id: `ai-result-${Date.now()}`,
-        content: html`
-          <message-item role="system" class="result-message">
-            <result-message message=${result.response} .products=${result.products}></result-message>
-          </message-item>
-        `,
-      },
-    ];
-    this.#scrollTo('latestMessage', 300);
+    if (latestThinkingMessageIndex !== -1) {
+      newMessages.splice(latestThinkingMessageIndex, 1);
+    }
+
+    try {
+      // wait for the AI to think
+      const result = await trpc.product.getResponseAndProducts.query({
+        userMessage,
+      });
+      // replace the thinking message with the result message
+      this.messages = [
+        ...newMessages,
+        {
+          id: `ai-result-${Date.now()}`,
+          content: html`
+            <message-item role="system" class="result-message">
+              <result-message message=${result.response} .products=${result.products}></result-message>
+            </message-item>
+          `,
+        },
+      ];
+      this.#scrollTo('latestMessage', 300);
+    } catch (error) {
+      // replace the thinking message with the error message
+      this.messages = [
+        ...newMessages,
+        {
+          id: `ai-error-${Date.now()}`,
+          content: html`
+            <message-item role="system">
+              <error-message></error-message>
+            </message-item>
+          `,
+        },
+      ];
+      this.#scrollTo('bodyBottom', 300);
+    }
     return this.messages;
   }
 
